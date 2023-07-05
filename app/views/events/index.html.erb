@@ -1,0 +1,8 @@
+<h1>Private events</h1>
+
+<% @events.each do |event| %>
+  <div class="event">
+    <h2 class="event-title"> <%=event.title %> </h2>
+    <p class="event-description"> <%event.description%> </p>
+  </div>
+<% end %>
