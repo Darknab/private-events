@@ -1,8 +1,11 @@
-<h1>Private events</h1>
+<div class="container">
+  <h1>Private events</h1>
 
-<% @events.each do |event| %>
-  <div class="event">
-    <h2 class="event-title"> <%=event.title %> </h2>
-    <p class="event-description"> <%event.description%> </p>
-  </div>
-<% end %>
+  <% @events.each do |event| %>
+    <div class="event">
+      <h2 class="event-title"> <%=event.title %> </h2>
+      <p class="event-description"> <%= event.description %> </p>
+      <p class="Event-date"> <%= event.date %> </p>
+    </div>
+  <% end %>
+</div>

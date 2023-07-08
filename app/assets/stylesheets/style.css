@@ -2,3 +2,19 @@ body {
     background-color: #111827;
     color: #f8fafc;
 }
+
+.container {
+    padding: 2em;
+}
+
+h1 {
+    text-align: center;
+}
+
+.event {
+    background-color: #bef264;
+    color: #111827;
+    max-width: 400px;
+    padding: 1em;
+    border-radius: 10px;
+}
