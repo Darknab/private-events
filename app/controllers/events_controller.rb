@@ -3,6 +3,10 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def new
     @user = User.find(current_user[:id])
     @event = @user.created_events.new
@@ -12,6 +16,12 @@ class EventsController < ApplicationController
     @user = User.find(current_user[:id])
     @event = @user.created_events.create(event_params)
     redirect_to user_path(@user)
+  end
+
+  def attend
+    @event = Event.find(params[:id])
+    current_user.attended_events << @event
+    redirect_to @event, notice: 'successfully attended the event!'
   end
 
   private
