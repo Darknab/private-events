@@ -3,7 +3,7 @@
 
   <% @events.each do |event| %>
     <div class="event">
-      <h2 class="event-title"> <%=event.title %> </h2>
+      <h2 class="event-title"> <%= link_to event.title, event_path(event) %> </h2>
       <p class="event-description"> <%= event.description %> </p>
       <p class="Event-date"> <%= event.date %> </p>
     </div>

@@ -3,8 +3,40 @@ body {
   color: #f8fafc;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: auto;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header li {
+  list-style: none;
+}
+
+.home {
+  margin: 1em;
+}
+
+.nav {
+  display: flex;
+  gap: 2em;
+}
+
 .container {
   padding: 2em;
+}
+
+a {
+  color:#f8fafc
+}
+
+a:hover {
+  opacity: 50% ;
 }
 
 h1 {
@@ -17,4 +49,8 @@ h1 {
   max-width: 400px;
   padding: 1em;
   border-radius: 10px;
+}
+
+.event a {
+  color: #111827;
 }
