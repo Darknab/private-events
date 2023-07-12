@@ -31,13 +31,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def attend
-    @event = Event.find(params[:id])
-    current_user.attended_events << @event
-    @event.attendees << current_user
-    redirect_to event_path(@event), notice: 'successfully attended the event!'
-  end
-
   def destroy
     @event = Event.find(params[:id])
     @event.destroy

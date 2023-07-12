@@ -5,8 +5,8 @@
 <p> <%= @event.date %> </p>
 <p> <strong> Location: </strong> <%= @event.creator.adress %>
 
-<% unless @event.attendees.include?(current_user) %>
-  <%= button_to "Attend", attend_event_path(@event), method: :post %>
+<% unless current_user.attended_events.include?(@event) %>
+  <%= button_to "Attend", participations_path(event_id: @event.id) %>
 <% else %>
   <p> You are already attending this event </p>
 <% end %>
