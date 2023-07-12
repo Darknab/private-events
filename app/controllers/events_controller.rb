@@ -18,10 +18,30 @@ class EventsController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to user_path(current_user)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def attend
     @event = Event.find(params[:id])
     current_user.attended_events << @event
-    redirect_to @event, notice: 'successfully attended the event!'
+    @event.attendees << current_user
+    redirect_to event_path(@event), notice: 'successfully attended the event!'
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to user_path(current_user), status: :see_other
   end
 
   private
