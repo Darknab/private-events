@@ -5,15 +5,12 @@ class Event < ApplicationRecord
 
   scope :upcoming, -> {where("date > ?", DateTime.now)}
   scope :past, -> {where("date < ?", DateTime.now)}
+  scope :public_event, -> {where("category = ?", "Public") }
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :date, presence: true, :date_cannot_be_in_the_past
-  validates :category, inclusion: {in: %w(Public Private), "%{value} is not valid"}
+  validates :date, presence: true, inclusion: {in: (DateTime.now..), message: "invalid date" }
+  validates :category, inclusion: {in: %w(Public Private), message: "%{value} is not valid"}
 
-  def date_cannot_be_in_the_past
-    if date.present? && date < DateTime.now()
-      errors.add(:date, "can't be in the past")
-    end
-  end
+  
 end
