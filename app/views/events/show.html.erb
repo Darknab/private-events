@@ -9,6 +9,10 @@
   <%= button_to "Attend", participations_path(event_id: @event.id) %>
 <% else %>
   <p> You are already attending this event </p>
+  <%= link_to "cancel attendance", participation_path(event_id: @event.id), data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %>
 <% end %>
 
 <h2>Attendees:</h2>

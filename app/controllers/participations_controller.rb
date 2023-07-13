@@ -7,5 +7,11 @@ class ParticipationsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:event_id])
+    Participation.destroy_by(attendee_id: current_user.id, attended_event: @event.id)
+    redirect_to @event
+  end
+
   
 end
