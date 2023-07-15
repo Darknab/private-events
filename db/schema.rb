@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_094449) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_15_090341) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_094449) do
     t.integer "creator_id", null: false
     t.string "category"
     t.index ["creator_id"], name: "index_events_on_creator_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_user_id"], name: "index_friendships_on_followed_user_id"
+    t.index ["follower_id"], name: "index_friendships_on_follower_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -46,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_094449) do
   end
 
   add_foreign_key "events", "users", column: "creator_id"
+  add_foreign_key "friendships", "users", column: "followed_user_id"
+  add_foreign_key "friendships", "users", column: "follower_id"
   add_foreign_key "participations", "events", column: "attended_event_id"
   add_foreign_key "participations", "users", column: "attendee_id"
 end
