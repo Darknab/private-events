@@ -12,6 +12,17 @@
   <p>You haven't created any event yet</p>
 <% end %>
 
+<% unless @user == current_user %>
+  <% if @user.followers.include?(current_user) %>
+    <%= link_to "No longer follow", friendship_path(user_id: @user.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+  <% else %>
+    <%= button_to "Follow", friendships_path(user_id: @user.id) %>
+  <% end %>
+<% end %>
+
 <h2> Events attended by <%= @user.name %> </h2>
 
 <h3> incoming events </h3>
