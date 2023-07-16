@@ -44,3 +44,29 @@
     <p> <%= event.date %> </p>
   </div>
 <% end %>
+
+<h2> Social </h2>
+
+<div class="social">
+  <div>
+    <ul>
+      <h3> Follows: </h3>
+      <% @user.followed_users.each do |user| %>
+        <% unless user == @user %>
+          <li> <%= link_to user.name ,user_path(user) %> </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <ul>
+      <h3> Followers: </h3>
+      <% @user.followers.each do |user| %>
+        <% unless user == @user %>
+          <li> <%= link_to user.name ,user_path(user) %> </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

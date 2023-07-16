@@ -54,3 +54,7 @@ h1 {
 .event a {
   color: #111827;
 }
+
+.social {
+  display: flex;
+}
