@@ -43,6 +43,20 @@ class EventsController < ApplicationController
     redirect_to user_path(current_user), status: :see_other
   end
 
+  def invite
+    @event = Event.find(params[:id])
+    @users = User.all
+    
+    invited_users = User.where(id: params[:user_ids])
+
+    invited_users.each do |user|
+      @event.participations.create(attendee_id: user.id)
+    end
+
+    redirect_to event_path(@event)
+
+  end
+
   private
   def event_params
     params.require(:event).permit(:title, :description, :date, :category)
